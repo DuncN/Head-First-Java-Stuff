@@ -1,10 +1,11 @@
+
 package nisbet.duncan.games;
 
+import java.util.ArrayList;
 
 public class Battleships {
 
-    int[] locationCells;
-    int numberOfHits = 0;
+    private ArrayList<String> locationCells;
 
     public static void main(String[] args) {
         int numberOfGuesses = 0;
@@ -13,13 +14,19 @@ public class Battleships {
         Battleships battleship = new Battleships();
         int randomNum = (int)(Math.random() * 5);
 
-        int[] locations = { randomNum, randomNum + 1, randomNum + 2 };
+        ArrayList<String> locations = new ArrayList<String>();
+        locations.add(Integer.toString(randomNum));
+        locations.add(Integer.toString(randomNum + 1));
+        locations.add(Integer.toString(randomNum + 2));
+        System.out.println(locations);
+        
         battleship.setLocationCells(locations);
         boolean isAlive = true;
 
         while (isAlive == true) {
             String guess = helper.getUserInput("enter a number");
             String result = battleship.checkYourself(guess);
+            System.out.println(result);
             numberOfGuesses++;
             if ("Kill".equals(result)) {
                 isAlive = false;
@@ -28,27 +35,25 @@ public class Battleships {
         }
     }
 
-    public void setLocationCells(int[] locs) {
+    public void setLocationCells(ArrayList<String> locs) {
         locationCells = locs;
 
     }
 
-    public String checkYourself(String stringGuess) {
-        int guess = Integer.parseInt(stringGuess);
-        String result = "Miss";
-        for (int cell : locationCells) {
-            if (guess == cell) {
-                result = "Hit";
-                numberOfHits++;
-                break;
-            }
-        }
+    public String checkYourself(String userInput) {
 
-        if (numberOfHits == locationCells.length) {
-            result = "Kill";
+        String result = "Miss";
+        int index = locationCells.indexOf(userInput);
+        if (index >= 0) {
+            locationCells.remove(index);
+            if (locationCells.isEmpty()) {
+                result = "Kill";
+            } else {
+                result = "Hit";
+
+            }
+            
         }
-        System.out.println(result);
         return result;
     }
-
 }
