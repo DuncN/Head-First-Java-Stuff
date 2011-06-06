@@ -1,10 +1,5 @@
 package nisbet.duncan.animals;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import org.junit.Test;
-
 class DogTest{
 
 public static void main (String[] args){
