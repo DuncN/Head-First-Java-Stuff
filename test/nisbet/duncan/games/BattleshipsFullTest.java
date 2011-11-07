@@ -8,47 +8,71 @@ import org.junit.Test;
 
 public class BattleshipsFullTest {
 
+    private ArrayList<String> testLocation = new ArrayList<String>();
+    private Battleships battleships = new Battleships();
+
+
+
     @Test
     public void hitReturnedWhenUserGuessCorrect() {
 
-        ArrayList<String> testLocation = setupTestLocationArray();
-        Battleships battleships = createAndSetBattleshipsInTestLocations(testLocation);
+        setupTestLocationArray();
+        createAndSetBattleshipsInTestLocations();
 
         String userGuess = "2";
 
-        String result = battleships.checkYourself(userGuess);
-        Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array", "Hit", result);
+        String result = extracted(userGuess);
+        Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Hit", result);
 
     }
+
 
     @Test
     public void missReturnedWhenUserGuessIncorrect() {
 
-        ArrayList<String> testLocation = setupTestLocationArray();
-        Battleships battleships = createAndSetBattleshipsInTestLocations(testLocation);
+        setupTestLocationArray();
+        createAndSetBattleshipsInTestLocations();
 
         String userGuess = "4";
 
-
-        String result = battleships.checkYourself(userGuess);
-        Assert.assertEquals("User guess " + userGuess + " was in the testLocation array", "Miss", result);
+        String result = extracted(userGuess);
+        Assert.assertEquals("User guess " + userGuess + " was in the testLocation array.", "Miss", result);
     }
 
-    private Battleships createAndSetBattleshipsInTestLocations(ArrayList<String> testLocation) {
+    @Test
+    public void killReturnedWhenShipDestroyed() {
 
-        Battleships battleships = new Battleships();
+        setupTestLocationArrayForKillTest();
+        createAndSetBattleshipsInTestLocations();
+
+        String userGuess = "5";
+
+        String result = extracted(userGuess);
+        Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Kill", result);
+    }
+
+    private void createAndSetBattleshipsInTestLocations() {
+
         battleships.setLocationCells(testLocation);
-        return battleships;
 
     }
 
-    private ArrayList<String> setupTestLocationArray() {
-        ArrayList<String> testLocation;
-        testLocation = new ArrayList<String>();
+    private void setupTestLocationArray() {
 
         testLocation.add("1");
         testLocation.add("2");
         testLocation.add("3");
-        return testLocation;
+
     }
+
+    private void setupTestLocationArrayForKillTest() {
+
+        testLocation.add("5");
+
+    }
+    private String extracted(String userGuess) {
+        String result = battleships.checkYourself(userGuess);
+        return result;
+    }
+
 }
