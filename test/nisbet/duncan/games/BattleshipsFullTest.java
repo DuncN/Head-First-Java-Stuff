@@ -21,7 +21,7 @@ public class BattleshipsFullTest {
 
         userGuess = "2";
 
-        compareUserGuessToResult(userGuess);
+        compareUserGuessToResult();
         Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Hit", result);
 
     }
@@ -34,7 +34,7 @@ public class BattleshipsFullTest {
 
         userGuess = "4";
 
-        compareUserGuessToResult(userGuess);
+        compareUserGuessToResult();
         Assert.assertEquals("User guess " + userGuess + " was in the testLocation array.", "Miss", result);
     }
 
@@ -46,7 +46,7 @@ public class BattleshipsFullTest {
 
         userGuess = "5";
 
-        compareUserGuessToResult(userGuess);
+        compareUserGuessToResult();
         Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Kill", result);
     }
 
@@ -70,7 +70,7 @@ public class BattleshipsFullTest {
 
     }
 
-    private void compareUserGuessToResult(String userGuess) {
+    private void compareUserGuessToResult() {
         result = battleships.checkYourself(userGuess);
     }
 
