@@ -11,6 +11,7 @@ public class BattleshipsFullTest {
     private ArrayList<String> testLocation = new ArrayList<String>();
     private Battleships battleships = new Battleships();
     private String result;
+    private String userGuess;
 
     @Test
     public void hitReturnedWhenUserGuessCorrect() {
@@ -18,7 +19,7 @@ public class BattleshipsFullTest {
         setupTestLocationArray();
         createAndSetBattleshipsInTestLocations();
 
-        String userGuess = "2";
+        userGuess = "2";
 
         compareUserGuessToResult(userGuess);
         Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Hit", result);
@@ -31,7 +32,7 @@ public class BattleshipsFullTest {
         setupTestLocationArray();
         createAndSetBattleshipsInTestLocations();
 
-        String userGuess = "4";
+        userGuess = "4";
 
         compareUserGuessToResult(userGuess);
         Assert.assertEquals("User guess " + userGuess + " was in the testLocation array.", "Miss", result);
@@ -43,7 +44,7 @@ public class BattleshipsFullTest {
         setupTestLocationArrayForKillTest();
         createAndSetBattleshipsInTestLocations();
 
-        String userGuess = "5";
+        userGuess = "5";
 
         compareUserGuessToResult(userGuess);
         Assert.assertEquals("User guess " + userGuess + " was outside the testLocation array.", "Kill", result);
